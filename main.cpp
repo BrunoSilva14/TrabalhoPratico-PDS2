@@ -86,12 +86,12 @@ int main() {
 
     for (int i = 0; i < splitSearch.size(); i++) {
         string currentWord = splitSearch[i];
-        map<string, int> currentWordIndexes = indexedWords[currentWord]; // [{d1.txt, 2}, {d2.txt, 1}]
+        map<string, int> currentWordIndexes = indexedWords[currentWord];
 
         map<string, int>::iterator currentWordIndexesIterator = currentWordIndexes.begin();
         while (currentWordIndexesIterator != currentWordIndexes.end()) {
-            string currentFileAssociated = currentWordIndexesIterator->first; // d1.txt
-            int currentWordCount = currentWordIndexesIterator->second; // 2
+            string currentFileAssociated = currentWordIndexesIterator->first;
+            int currentWordCount = currentWordIndexesIterator->second;
 
             bool isFileOnOutput = ocurrencesByFile.find(currentFileAssociated) != ocurrencesByFile.end();
             if (isFileOnOutput) {
