@@ -21,3 +21,25 @@ size_t split(const string &txt, vector<string> &strs, char ch) {
 
     return strs.size();
 }
+
+bool isLetter(char c) {
+    return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+}
+
+char toLowercase(char c) {
+    if (c >= 'A' && c <= 'Z') {
+        return c + ('a' - 'A');
+    }
+    return c;
+}
+
+string normalizeWord(const string &word){
+    string normalized;
+    for(char c : word){
+        if (isLetter(c)){
+          normalized += toLowercase(c);  
+        }
+    }
+    
+    return normalized;
+}
