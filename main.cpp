@@ -5,16 +5,40 @@
 #include <vector>
 
 #include "utils.h"
-
 using namespace std;
 
-int main() {
+int AMOUNT_FILES = 30;
 
+int main()
+{
+    // BEGIN - Part 1: Collection
+    map<string, string> indexedFiles;
+    for (int i = 1; i <= AMOUNT_FILES; i++)
+    {
+        char currentWord[100];
+        FILE* file;
+        string fileName = "d" + to_string(i);
+        fileName = fileName + ".txt";
+        string filePath="./documentos/" + fileName;
+        file = fopen(filePath.c_str(), "r+");
+        if (file == NULL)
+        {
+            cout << "Could not open this file" << endl;
+            continue;
+        }
+        string fileContent = "";
+        while (fscanf(file, "%s", currentWord) != EOF)
+        {
+            fileContent= fileContent + currentWord + " ";
+        }
+        indexedFiles[fileName] = fileContent;
+    }
+    // END - Part 1: Collection
+    
     // BEGIN - Part 2: Indexing
     map<string, map<string, int>> indexedWords;
-    map<string, string> fileWords;
 
-    for (auto entry : fileWords) {
+    for (auto entry : indexedFiles) {
         string file = entry.first;
         string words = entry.second;
 
