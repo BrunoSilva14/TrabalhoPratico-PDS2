@@ -9,70 +9,24 @@
 using namespace std;
 
 int main() {
+
+    // BEGIN - Part 2: Indexing
     map<string, map<string, int>> indexedWords;
+    map<string, string> fileWords;
 
-    // BEGIN - Mocked data
-    map<string, int> apartamentoIndexes;
-    apartamentoIndexes["d1.txt"] = 1;
-    apartamentoIndexes["d3.txt"] = 1;
-    indexedWords["apartamento"] = apartamentoIndexes;
+    for (auto entry : fileWords) {
+        string file = entry.first;
+        string words = entry.second;
 
-    map<string, int> casaIndexes;
-    casaIndexes["d1.txt"] = 2;
-    casaIndexes["d2.txt"] = 1;
-    indexedWords["casa"] = casaIndexes;
+        vector<string> splitWords;
+        split(words, splitWords, ' ');
 
-    map<string, int> emIndexes;
-    emIndexes["d2.txt"] = 1;
-    indexedWords["em"] = emIndexes;
-
-    map<string, int> entrarIndexes;
-    entrarIndexes["d2.txt"] = 1;
-    indexedWords["entrar"] = entrarIndexes;
-
-    map<string, int> estaIndexes;
-    estaIndexes["d3.txt"] = 1;
-    indexedWords["esta"] = estaIndexes;
-
-    map<string, int> ninguemIndexes;
-    ninguemIndexes["d1.txt"] = 2;
-    ninguemIndexes["d2.txt"] = 1;
-    ninguemIndexes["d3.txt"] = 1;
-    indexedWords["ninguem"] = ninguemIndexes;
-
-    map<string, int> todosIndexes;
-    todosIndexes["d2.txt"] = 2;
-    todosIndexes["d3.txt"] = 1;
-    indexedWords["todos"] = todosIndexes;
-
-    map<string, int> noIndexes;
-    noIndexes["d3.txt"] = 1;
-    indexedWords["no"] = noIndexes;
-
-    map<string, int> poremIndexes;
-    poremIndexes["d1.txt"] = 1;
-    indexedWords["porem"] = poremIndexes;
-
-    map<string, int> quemIndexes;
-    quemIndexes["d1.txt"] = 1;
-    quemIndexes["d2.txt"] = 2;
-    quemIndexes["d3.txt"] = 1;
-    indexedWords["quem"] = quemIndexes;
-
-    map<string, int> querIndexes;
-    querIndexes["d1.txt"] = 2;
-    querIndexes["d2.txt"] = 1;
-    indexedWords["quer"] = querIndexes;
-
-    map<string, int> sairamIndexes;
-    sairamIndexes["d2.txt"] = 1;
-    sairamIndexes["d3.txt"] = 1;
-    indexedWords["sairam"] = sairamIndexes;
-
-    map<string, int> tambemIndexes;
-    tambemIndexes["d1.txt"] = 1;
-    indexedWords["tambem"] = tambemIndexes;
-    // END - Mocked data
+        for(auto word : splitWords){
+            string normalizedWord = normalizeWord(word);
+            indexedWords[normalizedWord][file]++;
+        }
+    }
+    // END - Part 2: Indexing
 
     // BEGIN - Part 3: Recovery
     string search;
