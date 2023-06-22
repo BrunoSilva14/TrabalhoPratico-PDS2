@@ -3,29 +3,37 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <filesystem>
 
 #include "utils.h"
-using namespace std;
 
-int AMOUNT_FILES = 30;
+using namespace std;
+namespace fs = std::filesystem;
 
 int main()
 {
     // BEGIN - Part 1: Collection
     map<string, string> indexedFiles;
-    for (int i = 1; i <= AMOUNT_FILES; i++)
+
+    std::string filesFolderName = "./documentos";
+    for (const auto entry : fs::directory_iterator(filesFolderName))
     {
         char currentWord[100];
         FILE* file;
-        string fileName = "d" + to_string(i);
-        fileName = fileName + ".txt";
-        string filePath="./documentos/" + fileName;
-        file = fopen(filePath.c_str(), "r+");
+
+        string filePath = entry.path();
+
+        file = fopen(filePath.c_str(), "r");
         if (file == NULL)
         {
             cout << "Could not open this file" << endl;
             continue;
         }
+
+        int startPositionToErase = filePath.find(filesFolderName);
+        int numberOfSymbolsToErase = filesFolderName.size() + 1; // + 1 to remove extra "/" character
+        string fileName = filePath.erase(startPositionToErase, numberOfSymbolsToErase);
+
         string fileContent = "";
         while (fscanf(file, "%s", currentWord) != EOF)
         {
