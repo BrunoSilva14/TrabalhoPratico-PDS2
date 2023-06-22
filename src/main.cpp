@@ -63,8 +63,8 @@ int main()
     map<string, vector<int>> ocurrencesByFile;
 
     for (int i = 0; i < splitSearch.size(); i++) {
-        string currentWord = splitSearch[i];
-        map<string, int> currentWordIndexes = indexedWords[currentWord];
+        string currentNormalizedWord = normalizeWord(splitSearch[i]);
+        map<string, int> currentWordIndexes = indexedWords[currentNormalizedWord];
 
         map<string, int>::iterator currentWordIndexesIterator = currentWordIndexes.begin();
         while (currentWordIndexesIterator != currentWordIndexes.end()) {
