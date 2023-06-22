@@ -13,5 +13,7 @@
 <br>
 
 ## Como rodar o projeto atualmente:
-- Compilar o projeto: `g++ *.cpp -o main`
-- Executar: `./main`
+:warning: Necessário C++17 para compilação!
+
+- Compilar o projeto: `make`
+- Executar: `./execute_project`
